@@ -1,0 +1,204 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Unbounded', sans-serif;
+            overflow: hidden;
+        }
+        .message-sent {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        .slide-in {
+            animation: slideIn 1s ease-in-out;
+        }
+        .typing {
+            border-right: .1em solid #000;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #000;
+            }
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.1);
+            animation: move 10s infinite;
+        }
+        .background div:nth-child(odd) {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        @keyframes move {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(100vh) translateX(100vw) rotate(360deg);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+        }
+        .background-circle {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            animation: moveCircle 15s infinite;
+        }
+        .background-circle:nth-child(odd) {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        @keyframes moveCircle {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            50% {
+                transform: translateY(100vh) translateX(100vw) scale(1.5);
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+        }
+        .blurred {
+            filter: blur(5px);
+        }
+        .hover-effect:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+    <script>
+        function showMessageSent() {
+            const messageSent = document.getElementById('message-sent');
+            const content = document.getElementById('content');
+            const background = document.getElementById('background');
+            messageSent.style.display = 'block';
+            content.classList.add('blurred');
+            background.classList.add('blurred');
+        }
+
+        function closeMessageSent() {
+            const messageSent = document.getElementById('message-sent');
+            const content = document.getElementById('content');
+            const background = document.getElementById('background');
+            messageSent.style.display = 'none';
+            content.classList.remove('blurred');
+            background.classList.remove('blurred');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            showMessageSent();
+        }
+
+        function redirectToTeJIntelligence() {
+            window.location.href = "https://vindomc.github.io/TAIL/";
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const background = document.getElementById('background');
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            background.style.transform = `translate(-${x / 10}%, -${y / 10}%)`;
+        });
+    </script>
+</head>
+<body class="bg-white text-black flex flex-col items-center justify-center min-h-screen relative">
+    <div id="background" class="background">
+        <div style="top: 10%; left: 20%;"></div>
+        <div style="top: 50%; left: 70%;"></div>
+        <div style="top: 80%; left: 30%;"></div>
+        <div style="top: 20%; left: 80%;"></div>
+        <div style="top: 60%; left: 40%;"></div>
+        <div class="background-circle" style="top: 15%; left: 25%;"></div>
+        <div class="background-circle" style="top: 55%; left: 75%;"></div>
+        <div class="background-circle" style="top: 85%; left: 35%;"></div>
+        <div class="background-circle" style="top: 25%; left: 85%;"></div>
+        <div class="background-circle" style="top: 65%; left: 45%;"></div>
+    </div>
+    <div id="content" class="text-center fade-in">
+        <div class="flex items-baseline justify-center">
+            <h1 class="text-9xl font-bold typing hover-effect">Ebon<span class="text-9xl">.</span></h1>
+        </div>
+        <p class="text-lg mt-2 fade-in hover-effect" style="animation-delay: 3.5s;">Graphics Designer, UI/UX Designer & Coder</p>
+        <div class="flex flex-col items-center mt-2 fade-in hover-effect" style="animation-delay: 3.5s;">
+            <span class="text-2xl">I'm a male aged 14</span>
+        </div>
+    </div>
+    <div class="flex mt-10 space-x-10 fade-in" style="animation-delay: 3.5s;">
+        <div class="bg-gray-300 p-6 rounded-lg slide-in hover-effect">
+            <h2 class="text-2xl font-bold mb-4">Get In Touch.</h2>
+            <form onsubmit="handleSubmit(event)">
+                <div class="mb-4">
+                    <label for="email" class="block text-sm mb-2">Your email</label>
+                    <input type="email" id="email" class="w-full p-2 bg-white border border-gray-600 rounded-lg text-black" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-sm mb-2">Leave out a message</label>
+                    <textarea id="message" class="w-full p-2 bg-white border border-gray-600 rounded-lg text-black h-32" required></textarea>
+                </div>
+                <button type="submit" class="bg-white border border-gray-600 text-black py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-300">Send</button>
+            </form>
+        </div>
+        <div class="bg-gray-300 p-6 rounded-lg slide-in hover-effect">
+            <h2 class="text-2xl font-bold mb-4">My Projects</h2>
+            <button onclick="redirectToTeJIntelligence()" class="bg-white border border-gray-600 text-black py-2 px-4 rounded-lg hover:bg-gray-200 transition duration-300">TeJ Intelligence</button>
+        </div>
+    </div>
+    <footer class="mt-10 fade-in hover-effect" style="animation-delay: 3.5s;">
+        <p><i class="fas fa-envelope"></i> eboneduexplorer@outlook.com</p>
+    </footer>
+    <div id="message-sent" class="message-sent fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-300 p-6 rounded-lg w-80 text-center fade-in">
+        <button onclick="closeMessageSent()" class="absolute top-2 right-2 text-black text-xl">&times;</button>
+        <p>Your message has been successfully sent, you will be receiving a reply from eboneduexplorer@gmail.com soon.</p>
+    </div>
+</body>
+</html>
